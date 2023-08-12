@@ -56,8 +56,8 @@ const Navbar = () => {
                     </div>
                     <div className='sidebar__autentication'>
                         <IoPeople />
-                        <Link to={'/register'} className='autentication br'>Crear cuenta</Link>
-                        <Link to={'/login'} className='autentication'>Iniciar sesión</Link>
+                        <Link to={'/register'} className='autentication br' onClick={toggleNav}>Crear cuenta</Link>
+                        <Link to={'/login'} className='autentication' onClick={toggleNav}>Iniciar sesión</Link>
                     </div>
                 </div>
             )}
