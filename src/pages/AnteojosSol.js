@@ -2,7 +2,7 @@ import React from 'react'
 
 const AnteojosSol = () => {
   return (
-    <div>AnteojosSol</div>
+    <div className='page-wrapper'>AnteojosSol</div>
   )
 }
 

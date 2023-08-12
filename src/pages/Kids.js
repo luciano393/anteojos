@@ -2,7 +2,7 @@ import React from 'react'
 
 const Kids = () => {
   return (
-    <div>Kids</div>
+    <div className='page-wrapper'>Kids</div>
   )
 }
 

@@ -3,20 +3,102 @@
     position: fixed;
     top: 0; left: 0; right: 0;
     width: 100%;
-    height: 8vh;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
     padding: 0 .2rem;
-    .hamburger-btn {
-        
+    background-color: #ffffff;
+    box-shadow: 0 .2rem .2rem rgba(0,0,0,.2);
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 8vh;
+        width: 100%;
+        .logo {
+            text-align: center;
+            font-size: .6rem;
+        }
+        .hamburger-btn {
+            z-index: 1;
+        }
+        .cart {
+            font-size: 1.3rem;
+            margin-right: .3rem;
+        }
+        .search {
+            display: none;
+        }
     }
-    .logo {
-        text-align: center;
-        font-size: .6rem;
+    .sidebar {
+        position: fixed;
+        top: 0; left: 0;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        height: 100%;
+        width: 80%;
+        background-color: #fff;
+        padding-top: 3rem;
+        box-shadow: 0 .2rem .2rem rgba(0,0,0,.2);
+        transition: all 2s;
+        .sidebar__item {
+            display: block;
+            width: 100%;
+            color: #111;
+            border-bottom: 1px solid #111;
+            padding: 1rem;
+            &:hover {
+                background-color: #111;
+                color: #fff;
+            }
+        }
     }
-    .cart {
-        font-size: 1.3rem;
-        margin-right: .3rem;
+    @media (min-width:780px) {
+        flex-direction: column;
+        width: auto;
+        height: 25vh;
+        margin: 1rem 5rem;
+        justify-content: center;
+        box-shadow: none;
+        .header {
+            flex-direction: row;
+            padding: 5rem 0;
+            .search {
+                display: block;
+                font-size: 1.5rem;
+            }
+            .hamburger-btn {
+                display: none;
+            }
+            .logo {
+                font-size: 1.5rem;
+            }
+            .cart {
+                font-size: 1.5rem;
+            }
+        }
+        .sidebar {
+            position: relative;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            text-align: center;
+            height: auto;
+            padding-top: 0;
+            box-shadow: none;
+            background-color: #111;
+            .sidebar__item {
+                font-size: .8rem;
+                color: #fff;
+                padding: 1rem;
+                width: auto;
+                border: none;
+                &:hover {
+                    background-color: #fff;
+                    color: #111;
+                }
+            }
+        }
     }
 }
+
