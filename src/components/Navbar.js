@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Hamburger from 'hamburger-react';
-import { IoCart, IoSearch } from 'react-icons/io5';
+import { IoCart, IoSearch, IoPeople } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
@@ -37,15 +37,28 @@ const Navbar = () => {
                 <div className='cart'>
                     <IoCart/>
                 </div>
+                {(screenWidth > 700) && (
+                    <div className='autentication-700'>
+                        <Link to={'/register'} className='autentication-700__item br'>Crear cuenta</Link>
+                        <Link to={'/login'} className='autentication-700__item'>Iniciar sesión</Link>
+                    </div>
+                )}
             </div>
             {(isOpen || screenWidth > 700) && (
                 <div className='sidebar'>
-                    <Link to={`/`} className='sidebar__item' onClick={toggleNav}>INICIO</Link>
-                    <Link to={`/anteojosdesol`} className='sidebar__item' onClick={toggleNav}>ANTEOJOS DE SOL</Link>
-                    <Link to={`/anteojosrecetados`} className='sidebar__item' onClick={toggleNav}>ANTEOJOS RECETADOS</Link>
-                    <Link to={`/kids`} className='sidebar__item' onClick={toggleNav}>NIÑOS</Link>
-                    <Link to={`/politica`} className='sidebar__item' onClick={toggleNav}>POLITICAS</Link>
-                    <Link to={`/contacto`} className='sidebar__item' onClick={toggleNav}>CONTACTO</Link>
+                    <div className='sidebar__nav'>
+                        <Link to={`/`} className='sidebar__item' onClick={toggleNav}>INICIO</Link>
+                        <Link to={`/anteojosdesol`} className='sidebar__item' onClick={toggleNav}>ANTEOJOS DE SOL</Link>
+                        <Link to={`/anteojosrecetados`} className='sidebar__item' onClick={toggleNav}>ANTEOJOS RECETADOS</Link>
+                        <Link to={`/kids`} className='sidebar__item' onClick={toggleNav}>NIÑOS</Link>
+                        <Link to={`/politica`} className='sidebar__item' onClick={toggleNav}>POLITICAS</Link>
+                        <Link to={`/contacto`} className='sidebar__item' onClick={toggleNav}>CONTACTO</Link>
+                    </div>
+                    <div className='sidebar__autentication'>
+                        <IoPeople />
+                        <Link to={'/register'} className='autentication br'>Crear cuenta</Link>
+                        <Link to={'/login'} className='autentication'>Iniciar sesión</Link>
+                    </div>
                 </div>
             )}
         </div>

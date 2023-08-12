@@ -13,6 +13,10 @@ import Kids from './pages/Kids';
 import Politica from './pages/Politica';
 import Contacto from './pages/Contacto';
 import AnteojosRecetados from './pages/AnteojosRecetados';
+import Login from './autentication/Login';
+import Register from './autentication/Register';
+
+
 
 const router = createBrowserRouter([
   {
@@ -48,6 +52,16 @@ const router = createBrowserRouter([
       {
         path: "/contacto",
         element: <Contacto />,
+        errorElement: <ErrorPage />
+      },
+      {
+        path: "/login",
+        element: <Login />,
+        errorElement: <ErrorPage />
+      },
+      {
+        path: "/register",
+        element: <Register />,
         errorElement: <ErrorPage />
       }
     ]

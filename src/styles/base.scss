@@ -14,9 +14,19 @@ body {
 } 
 
 .page-wrapper {
-    height: 80vh;
+    height: 40vh;
     width: 100%;
     align-items: center;
     text-align: center;
     display: flex;
+    @media (min-width:780px) {
+        margin: 10rem 0 0 0;
+        height: 75vh;
+    }
+}
+.inicio {
+    background-image: url(../assets/anteojos.jpg);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
