@@ -1,0 +1,22 @@
+.navbar-wrapper {
+    display: flex;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    width: 100%;
+    height: 8vh;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 .2rem;
+    .hamburger-btn {
+        
+    }
+    .logo {
+        text-align: center;
+        font-size: .6rem;
+    }
+    .cart {
+        font-size: 1.3rem;
+        margin-right: .3rem;
+    }
+}
