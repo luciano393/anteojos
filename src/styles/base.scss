@@ -14,12 +14,12 @@ body {
 } 
 
 .page-wrapper {
-    width: 90%;
+    width: 100%;
     display: flex;
-    margin: 8rem 1rem 3rem 1rem;
+    margin: 3.2rem 0 3rem 0;
     text-align: start;
     @media (min-width:780px) {
-        margin: 10rem 3rem 0 3rem;
+        margin: 8rem 0 0 0;
         height: 75vh;
     }
 }

@@ -44,8 +44,7 @@ const Navbar = () => {
                     </div>
                 )}
             </div>
-            {(isOpen || screenWidth > 700) && (
-                <div className='sidebar'>
+                <div className={`sidebar ${isOpen || screenWidth > 700 ? 'show' : 'close'}`}>
                     <div className='sidebar__nav'>
                         <Link to={`/`} className='sidebar__item' onClick={toggleNav}>INICIO</Link>
                         <Link to={`/anteojosdesol`} className='sidebar__item' onClick={toggleNav}>ANTEOJOS DE SOL</Link>
@@ -60,7 +59,6 @@ const Navbar = () => {
                         <Link to={'/login'} className='autentication' onClick={toggleNav}>Iniciar sesión</Link>
                     </div>
                 </div>
-            )}
         </div>
     )
 }

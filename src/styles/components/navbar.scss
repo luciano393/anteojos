@@ -28,9 +28,14 @@
             display: none;
         }
     }
+    .show {
+        left: 0;
+    }
+    .close {
+        left: -50rem;
+    }
     .sidebar {
         position: fixed;
-        top: 0; left: 0;
         display: flex;
         align-items: center;
         flex-direction: column;
@@ -39,41 +44,41 @@
         background-color: #fff;
         padding-top: 3rem;
         box-shadow: 0 .2rem .2rem rgba(0,0,0,.2);
-        transition: all 2s;
-        .sidebar__nav {
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-            height: 90%;
-            width: 100%;
-            .sidebar__item {
-                display: block;
-                width: 100%;
+        transition: all 1s;
+    }
+    .sidebar__autentication {
+        width: 100%;
+        height: 10%;
+        align-items: center;
+        border-top: 1px solid #666;
+        padding: 1rem 1rem;
+        font-size: .8rem;
+        .autentication {
+            color: #666;
+            padding: .5rem 1rem;
+            &:hover {
                 color: #111;
-                border-bottom: 1px solid #111;
-                padding: 1rem;
-                &:hover {
-                    background-color: #111;
-                    color: #fff;
-                }
             }
         }
-        .sidebar__autentication {
+        .br {
+            border-right: 1px solid #666;
+        }
+    }
+    .sidebar__nav {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        height: 90%;
+        width: 100%;
+        .sidebar__item {
+            display: block;
             width: 100%;
-            height: 10%;
-            align-items: center;
-            border-top: 1px solid #666;
-            padding: 1rem 1rem;
-            font-size: .8rem;
-            .autentication {
-                color: #666;
-                padding: .5rem 1rem;
-                &:hover {
-                    color: #111;
-                }
-            }
-            .br {
-                border-right: 1px solid #666;
+            color: #111;
+            border-bottom: 1px solid #111;
+            padding: 1rem;
+            &:hover {
+                background-color: #111;
+                color: #fff;
             }
         }
     }
@@ -160,4 +165,6 @@
         flex-direction: row;
     }
 }
+
+
 
