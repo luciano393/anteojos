@@ -1,10 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import Hamburger from 'hamburger-react';
 import { IoCart, IoSearch, IoPeople } from 'react-icons/io5';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import PreviewProfile from './PreviewProfile';
-import { removeUserAction } from '../reducers/AuthReducer';
+import { getUserAction, removeUserAction } from '../reducers/AuthReducer';
+import getToken from '../helpers/UseGetToken';
+import { IsAuthenticated } from '../helpers/IsAuthenticated';
 
 const Navbar = () => {
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
@@ -23,6 +25,7 @@ const Navbar = () => {
     };
 
     const Logout = () => {
+        toggleNav()
         dispatch(removeUserAction())
         const refreshPage = () => {
             history(0);
@@ -89,9 +92,9 @@ const Navbar = () => {
                     : 
                     <div className='sidebar__autentication'>
                         <IoPeople/>
-                        <Link to={'/'} className='autentication br'>Perfil</Link>
+                        <Link to={'/profile'} className='autentication br' onClick={toggleNav}>Perfil</Link>
                         <Link to={'/'} className='autentication br'>Back-office</Link>
-                        <Link to={'/'} className='autentication' onClick={Logout}>Cerrar sesión</Link>
+                        <Link className='autentication' onClick={Logout}>Cerrar sesión</Link>
                     </div>
                     }
                 </div>

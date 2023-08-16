@@ -5,6 +5,7 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 2rem;
+    font-size: .9rem;
     .nav {
         display: flex;
         flex-direction: column;
@@ -26,6 +27,6 @@
     }
     @media (min-width:780px) {
         flex-direction: row;
-        padding: 2rem 5rem;
+        padding: 2rem 10rem;
     }
 }

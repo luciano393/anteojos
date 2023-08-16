@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { Provider } from 'react-redux';
+import { Provider, useSelector } from 'react-redux';
 import './styles/index.scss';
 import {
   createBrowserRouter,
@@ -16,8 +16,11 @@ import Contacto from './pages/Contacto';
 import AnteojosRecetados from './pages/AnteojosRecetados';
 import Login from './autentication/Login';
 import Register from './autentication/Register';
+import LentesContacto from './pages/LentesContacto';
 
 import store from './store';
+import Profile from './components/Profile';
+
 
 const router = createBrowserRouter([
   {
@@ -41,6 +44,11 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage />
       },
       {
+        path: "/lentesdecontacto",
+        element: <LentesContacto />,
+        errorElement: <ErrorPage />
+      },
+      {
         path: "/kids",
         element: <Kids />,
         errorElement: <ErrorPage />
@@ -58,11 +66,16 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
-        errorElement: <ErrorPage />
+        errorElement: <ErrorPage />,
       },
       {
         path: "/register",
         element: <Register />,
+        errorElement: <ErrorPage />
+      },
+      {
+        path: "/profile",
+        element: <Profile />,
         errorElement: <ErrorPage />
       }
     ]

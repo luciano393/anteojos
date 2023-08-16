@@ -6,6 +6,12 @@ const Carousel = () => {
         {
             original: 'https://ik.imagekit.io/0lswtnkkmck/imagen_Htq0hdMHa.jpg?updatedAt=1691886269379'
         },
+        {
+            original: 'https://ik.imagekit.io/0lswtnkkmck/imagen-prueba_iwer8dF69.jpg?updatedAt=1691886359601'
+        },
+        {
+            original: 'https://ik.imagekit.io/0lswtnkkmck/imagen3_hVLVtgLm9.jpg?updatedAt=1691886342155'
+        },
     ];
 
     return (
@@ -18,6 +24,7 @@ const Carousel = () => {
                 showFullscreenButton={false}
                 showPlayButton={false}
                 stopPropagation={false}
+                slideDuration={600}
             />
         </div>
     )

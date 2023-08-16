@@ -26,18 +26,26 @@ export const authSlice = createSlice({
 
 export const {login, logout} = authSlice.actions;
 
-export const getUserAction = ({ id }) => async dispatch => {
+export const getUserActionJwt = () => async dispatch => {
+  try {
+    const user = await apiServer.get("http://localhost:9000/users/authenticate/me", {
+    headers: {
+      Authorization: getToken()
+    }
+    })
+    dispatch(login(user))
+  } catch(e) {
+    console.log(e)
+  }
+}
+
+export const getUserAction = (u) => async dispatch => {
     try {
-      const res = await apiServer.get(`http://localhost:9000/users/${id}`, {
-        headers:  {
-            Authorization: getToken()
-        }
-      })
-      dispatch(login(res.data.data))
+      await dispatch(login(u))
     } catch (error) {
       console.log(error)
     }
-  }
+}
 
 export const removeUserAction = () => dispatch => {
     localStorage.removeItem("token")

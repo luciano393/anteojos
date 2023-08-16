@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import apiServer from '../services/server';
 import { useDispatch } from 'react-redux';
-import { login } from '../reducers/AuthReducer';
+import { getUserAction } from '../reducers/AuthReducer';
 import { Alert } from '../components/Alert';
 
 const Login = () => {
@@ -30,19 +30,23 @@ const Login = () => {
               .then(async (res) => {
                 const { data, message } = res.data
                 const { token } = data
-                console.log(data)
                 if(message === "Login Successful.") {
                   Alert("Exito!","Haz iniciado sesión con exito!","success")
                   localStorage.setItem("token", token)
-                  dispatch(login(data))
+                  dispatch(getUserAction(data))
                   setTimeout(() => {
                     history('/')
                   },3000)
                 }
               })
-              .catch((e) => {
-                console.log(e)
-              })
+              .catch((error) => {
+                if (error.response.status === 401) {
+                  Alert("Oops!", "El correo electronico y/o la contraseña son incorrectas", "error")
+                } else {
+                  Alert("Oops!", "Hubo un error desconocido.")
+                }
+              }
+              )
     }
 
     return (

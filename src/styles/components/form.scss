@@ -7,7 +7,7 @@
     
     h1 {
         margin: 1rem;
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         text-align: start;
         color: #222;
     }
@@ -20,11 +20,12 @@
             p {
                 margin-bottom: .3rem;
                 color: #666;
+                font-size: .9rem;
             }
             .input {
                 border: 1px solid rgba($color: #000000, $alpha: .2);
                 padding: 0.6rem;
-                font-size: 1.2rem;
+                font-size: 1rem;
                 font-weight: 400;
                 color: #444;
                 width: 100%;
@@ -34,7 +35,6 @@
             margin: 1rem 0;
             padding: 0.6rem;
             background-color: #222;
-            font-size: 1.3rem;
             color: #fff;
             &:hover {
                 background-color: #444;

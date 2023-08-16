@@ -5,8 +5,8 @@ import Categories from '../components/Categories';
 import ProductsMain from '../components/ProductsMain';
 
 
+const Main = () => {  
 
-const Main = () => {
   return (
     <div className='page-wrapper'>
         <Carousel />
