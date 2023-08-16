@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import apiServer from '../services/server';
 import { useDispatch } from 'react-redux';
 import { login } from '../reducers/AuthReducer';
+import { Alert } from '../components/Alert';
 
 const Login = () => {
     const dispatch = useDispatch();
@@ -31,10 +32,12 @@ const Login = () => {
                 const { token } = data
                 console.log(data)
                 if(message === "Login Successful.") {
-                  window.alert("Haz iniciado sesión con exito!")
+                  Alert("Exito!","Haz iniciado sesión con exito!","success")
                   localStorage.setItem("token", token)
                   dispatch(login(data))
-                  history('/')
+                  setTimeout(() => {
+                    history('/')
+                  },3000)
                 }
               })
               .catch((e) => {
