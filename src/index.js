@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
 import './styles/index.scss';
 import {
   createBrowserRouter,
@@ -16,7 +17,7 @@ import AnteojosRecetados from './pages/AnteojosRecetados';
 import Login from './autentication/Login';
 import Register from './autentication/Register';
 
-
+import store from './store';
 
 const router = createBrowserRouter([
   {
@@ -71,7 +72,7 @@ const router = createBrowserRouter([
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  <Provider store={store}>
       <RouterProvider router={router}/>
-  </React.StrictMode>
+  </Provider>
 );

@@ -9,6 +9,7 @@ const Footer = () => {
         <Link to={`/`} className='nav__items'>INICIO</Link>
         <Link to={`/anteojosdesol`} className='nav__items'>ANTEOJOS DE SOL</Link>
         <Link to={`/anteojosrecetados`} className='nav__items'>ANTEOJOS RECETADOS</Link>
+        <Link to={`/lentesdecontacto`} className='nav__items'>LENTES DE CONTACTO</Link>
         <Link to={`/kids`} className='nav__items'>NIÑOS</Link>
         <Link to={`/politica`} className='nav__items'>POLITICAS</Link>
         <Link to={`/contacto`} className='nav__items'>CONTACTO</Link>

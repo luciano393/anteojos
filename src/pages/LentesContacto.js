@@ -1,8 +1,8 @@
 import React from 'react'
 import Item from '../components/Item'
 
-const AnteojosSol = () => {
-    const url = "https://ik.imagekit.io/0lswtnkkmck/Anteojos%20de%20Sol/%20%20%20"
+const LentesContacto = () => {
+  const url = "https://ik.imagekit.io/0lswtnkkmck/Anteojos%20de%20Sol/%20%20%20"
     const products = [
           "(9)_AfLMcPrMl.jpeg?updatedAt=1691939398394",
           "(7)_WrqQnjl3D.jpeg?updatedAt=1691939398323",
@@ -17,7 +17,7 @@ const AnteojosSol = () => {
 
     return (
       <div className='page-wrapper'>
-        <h2 className='title-section'>Anteojos para sol</h2>
+        <h2 className='title-section'>Lentes de contacto</h2>
         <div className='products'>
                   <Item url={url.concat(products[0])}/>
                   <Item url={url.concat(products[2])}/>
@@ -33,4 +33,4 @@ const AnteojosSol = () => {
     )
 }
 
-export default AnteojosSol
+export default LentesContacto

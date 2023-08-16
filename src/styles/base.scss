@@ -1,3 +1,4 @@
+@import "~react-image-gallery/styles/scss/image-gallery.scss";
 
 * {
     margin: 0;
@@ -8,26 +9,54 @@
     outline: none;
 }
 
+html {
+    overflow-x: hidden;
+}
+
 body {
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;
 } 
 
+.products {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: .5rem;
+    @media(min-width: 780px) {
+        display: grid;
+        gap: 1rem;
+        width: 83%;
+        margin: 3rem 4.1rem;
+        padding: 0;
+        grid-template-columns: repeat(3, 1fr);
+    }
+    @media(min-width: 950px) {
+        width: 86%;
+    }
+    @media(min-width: 1120px) {
+        width: 90%;
+    }
+}
+
 .page-wrapper {
     width: 100%;
     display: flex;
-    margin: 7rem 0 3rem 0;
+    flex-direction: column;
+    margin: 3rem 0 3rem 0;
     text-align: start;
-    @media (min-width:780px) {
-        margin: 12rem 0 0 0;
-        height: 75vh;
+    z-index: 0;
+    .title-section {
+        margin: 2rem 4.1rem;
+        text-align: center;
+        border: 1px solid #666;
+        padding: 1rem;
     }
-}
-.inicio {
-    background-image: url(../assets/anteojos.jpg);
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
+    @media (min-width:780px) {
+        margin: 9rem 0 0 0;
+    }
 }
 .politicas {
     display: flex;
@@ -35,6 +64,7 @@ body {
     flex-direction: column;
     text-align: start;
     line-height: 1.5rem;
+    margin-top: 6rem;
     h1 {
         font-size: 2rem;
         margin-bottom: 2rem;
@@ -46,5 +76,9 @@ body {
     p {
         font-size: 1rem;
         margin-bottom: 1rem;
+    }
+    @media(min-width:780px) {
+        margin: 15rem 3rem 10rem 3rem;
+        
     }
 }

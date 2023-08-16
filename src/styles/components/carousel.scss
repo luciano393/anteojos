@@ -1,0 +1,10 @@
+@import "~react-image-gallery/styles/scss/image-gallery.scss";
+
+.carousel {
+    height: auto;
+    z-index: 0;
+    @media(min-width: 780px) {
+        width: auto;
+        margin: 0 9rem;
+    }
+}

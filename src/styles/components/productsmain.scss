@@ -1,0 +1,22 @@
+.productsmain-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 1rem 0;
+    .btn {
+        padding: 1rem;
+        background-color: #222;
+        color: #fff;
+        margin: .5rem;
+        text-align: center;
+        &:hover {
+            background-color: #444;
+        }
+    }
+    @media(min-width: 780px) {
+        margin: 1rem 4rem;
+        .btn {
+            margin: 1rem 5rem
+        }
+    }
+}
