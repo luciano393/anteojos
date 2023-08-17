@@ -1,20 +1,24 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, { useEffect, useState} from 'react';
 import Hamburger from 'hamburger-react';
 import { IoCart, IoSearch, IoPeople } from 'react-icons/io5';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import PreviewProfile from './PreviewProfile';
 import { getUserAction, removeUserAction } from '../reducers/AuthReducer';
-import getToken from '../helpers/UseGetToken';
-import { IsAuthenticated } from '../helpers/IsAuthenticated';
+import Logotype from './Logotype';
 
 const Navbar = () => {
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
     const [isOpen, setOpen] = useState(false);
     const [isToggle, setIsToggle] = useState(false);
+    const [openCar, setOpenCar] = useState(false);
     const user = useSelector((state) => state.auth.value)
     const dispatch = useDispatch();
     const history = useNavigate();
+
+    const toggleCar = () => {
+        setOpenCar(!openCar)
+    }
 
     const toggleUser = () => {
         setIsToggle(!isToggle)
@@ -54,9 +58,9 @@ const Navbar = () => {
                     <IoSearch />
                 </div>
                 <div className='logo'>
-                    <h2>ANTEOJOS OLIVER</h2>
+                    <Logotype />
                 </div>
-                <div className='cart'>
+                <div className='cart' onClick={toggleCar}>
                     <IoCart/>
                 </div>
                 {(!user && screenWidth > 800) && (
@@ -71,7 +75,7 @@ const Navbar = () => {
                 {(isToggle) && (
                     <PreviewProfile />
                 )}
-            </div>
+                </div>
                 <div className={`sidebar ${isOpen || screenWidth > 780 ? 'show' : 'close'}`}>
                     <div className='sidebar__nav'>
                         <Link to={`/`} className='sidebar__item' onClick={toggleNav}>INICIO</Link>
@@ -97,6 +101,19 @@ const Navbar = () => {
                         <Link className='autentication' onClick={Logout}>Cerrar sesión</Link>
                     </div>
                     }
+                </div>
+                <div className={`car-shop ${openCar ? 'open-cart' : 'close-cart'}`}>
+                    <header>
+                        <h2>Carrito de compras</h2>
+                        <div className='close' onClick={toggleCar}>x</div>
+                    </header>
+                    <div className='categorys'>
+                        <h5>PRODUCTO</h5>
+                        <h5>SUBTOTAL</h5>
+                    </div>
+                    <div className='content'>
+
+                    </div>
                 </div>
         </div>
     )

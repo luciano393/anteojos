@@ -39,7 +39,7 @@ const Register = () => {
     }
     await apiServer.post("http://localhost:9000/users/register", dataUser)
       .then((res) => {
-        const { message, data } = res.data
+        const { message, data } = res
         const { token } = data
         if(message === "User created successfully!") {
           window.alert("Te haz registrado correctamente")
@@ -59,7 +59,12 @@ const Register = () => {
 
   return (
     <div className='form-wrapper'>
-        <h1>REGISTRO</h1>
+        <header>
+          <Link to={"/"} className='logo'>
+            Logo
+          </Link>
+        </header>
+        <h1>Registro de usuarios</h1>
         <Formik
           initialValues= {initialValues}
           validationSchema={validationSchema}

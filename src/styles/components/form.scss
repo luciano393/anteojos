@@ -1,25 +1,33 @@
 .form-wrapper {
-    width: 100%;
-    align-items: center;
     display: flex;
     flex-direction: column;
-    margin: 6rem 0 3rem 0;
-    
+    margin: 6rem 5rem 3rem 5rem;
+    box-shadow: 0 .2rem .2rem rgba(0,0,0,.5);
+    header {
+        background-color: #222;
+        width: 100%;
+        padding: 1rem;
+        .logo{
+            font-size: 1rem;
+            color: #fff
+        }
+    }
     h1 {
-        margin: 1rem;
-        font-size: 1.3rem;
+        margin: 1.5rem 2rem 0 2rem;
+        font-size: 1.6rem;
+        font-weight: 400;
         text-align: start;
-        color: #222;
+        color: #555;
     }
     .form {
         display: flex;
         flex-direction: column;
-        margin: 1rem;
+        margin: 1rem 2rem 3rem 2rem;
         .box-input {
-            margin: 1rem 0;
+            margin: .5rem 0;
             p {
                 margin-bottom: .3rem;
-                color: #666;
+                color: #999;
                 font-size: .9rem;
             }
             .input {
@@ -49,6 +57,7 @@
         }
     }
     @media (min-width:780px) {
-        margin: 10rem 0 3rem 0;
+        width: 30rem;
+        margin: 5rem auto;
     }
 }

@@ -3,13 +3,16 @@ import { Formik } from 'formik';
 import { Link, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import apiServer from '../services/server';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getUserAction } from '../reducers/AuthReducer';
 import { Alert } from '../components/Alert';
+import Logotype from '../components/Logotype';
 
 const Login = () => {
     const dispatch = useDispatch();
     const history = useNavigate();
+    const isAuthenticated = useSelector((state) => state.value)
+    console.log(isAuthenticated);
 
     const validationSchema = Yup.object({
       email: Yup.string().email("Formato del email invalido").required("Required"),
@@ -26,14 +29,14 @@ const Login = () => {
         email: values.email,
         password: values.password
       }
-      await apiServer.post("http://localhost:9000/users/authenticate", dataUser)
+      await apiServer.post("http://localhost:9000/users/authenticate/", dataUser)
               .then(async (res) => {
                 const { data, message } = res.data
                 const { token } = data
                 if(message === "Login Successful.") {
                   Alert("Exito!","Haz iniciado sesión con exito!","success")
                   localStorage.setItem("token", token)
-                  dispatch(getUserAction(data))
+                  dispatch(getUserAction())
                   setTimeout(() => {
                     history('/')
                   },3000)
@@ -51,7 +54,12 @@ const Login = () => {
 
     return (
       <div className='form-wrapper'>
-          <h1>INGRESAR</h1>
+          <header>
+            <Link to={"/"} className='logo'>
+              Logo
+            </Link>
+          </header>
+          <h1>Login de usuarios</h1>
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}

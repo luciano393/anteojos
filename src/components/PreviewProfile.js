@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { removeUserAction } from '../reducers/AuthReducer';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const PreviewProfile = () => {
     const user = useSelector((state) => state.auth.value)
@@ -20,9 +20,8 @@ const PreviewProfile = () => {
         <div className='preview-profile'>
             <h3>{user.name}</h3>
             <p>{user.email}</p>
-            <button className='btn' onClick={Logout}>
-                Cerrar Sesión
-            </button>
+            <Link to={'/backoffice'} className='btn'>Back office</Link>
+            <button className='btn' onClick={Logout}>Cerrar Sesión</button>
         </div>
     ) 
 }

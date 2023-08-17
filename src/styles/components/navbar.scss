@@ -16,7 +16,7 @@
         width: 100%;
         .logo {
             text-align: center;
-            font-size: .6rem;
+            
         }
         .hamburger-btn {
             z-index: 100;
@@ -24,6 +24,7 @@
         .cart {
             font-size: 1.3rem;
             margin-right: .3rem;
+            cursor: pointer;
         }
         .search {
             display: none;
@@ -84,10 +85,63 @@
             }
         }
     }
+    .open-cart {
+        top: 0;
+        right: 0;
+    }
+    .close-cart {
+        right: -100rem;
+    }
+    .car-shop {
+        transition: all 1s;
+        box-shadow: 0 .2rem .2rem rgba(0,0,0,.2);
+        position: fixed;
+        z-index: 150;
+        height: 100vh;
+        width: 100%;
+        background-color: #fff;
+        padding: 0 1rem;
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #777;
+            h2 {
+                font-weight: 400;
+                color: #666;
+                font-size: 1.3rem;
+            }
+            .close {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 1px solid #666;
+                color: #666;
+                padding: .1rem .5rem .3rem .5rem;
+                font-size: 1.3rem;
+                font-weight: 600;
+                cursor: pointer;
+            }
+        }
+        .categorys {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 1rem 3rem;
+            border-bottom: 1px solid #777;
+            h5 {
+                color: #666;
+            }
+        }
+        @media (min-width:780px) {
+            width: 40%;
+        }
+    }
     @media (min-width:780px) {
         flex-direction: column;
         width: auto;
-        padding: 0 9rem;
+        padding: 0 7rem;
         justify-content: center;
         .header {
             flex-direction: row;
@@ -100,7 +154,7 @@
                 display: none;
             }
             .logo {
-                font-size: 1rem;
+                text-align: start;
             }
             .cart {
                 display: flex;

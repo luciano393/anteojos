@@ -1,18 +1,16 @@
 import React from 'react';
-import Carousel from '../components/Carousel';
-import Benefits from '../components/Benefits';
-import Categories from '../components/Categories';
-import ProductsMain from '../components/ProductsMain';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+import { Outlet } from 'react-router-dom';
 
 
 const Main = () => {  
 
   return (
-    <div className='page-wrapper'>
-        <Carousel />
-        <Benefits />
-        <Categories />
-        <ProductsMain />
+    <div>
+        <Navbar />
+        <Outlet />
+        <Footer />
     </div>
   )
 }

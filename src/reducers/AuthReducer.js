@@ -2,13 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import getToken from '../helpers/UseGetToken';
 import apiServer from '../services/server';
 
-const initialStateValue = {
-    name: "",
-    email: "",
-    phone: "",
-    id: "",
-    token: ""
-};
+const initialStateValue = false;
 
 export const authSlice = createSlice({
     name: 'auth',
@@ -26,22 +20,14 @@ export const authSlice = createSlice({
 
 export const {login, logout} = authSlice.actions;
 
-export const getUserActionJwt = () => async dispatch => {
-  try {
-    const user = await apiServer.get("http://localhost:9000/users/authenticate/me", {
-    headers: {
-      Authorization: getToken()
-    }
-    })
-    dispatch(login(user))
-  } catch(e) {
-    console.log(e)
-  }
-}
-
-export const getUserAction = (u) => async dispatch => {
+export const getUserAction = () => async dispatch => {
     try {
-      await dispatch(login(u))
+      const res = await apiServer.get("http://localhost:9000/me", {
+        headers: {
+          Authorization: getToken()
+        }
+      })
+      dispatch(login(res.data.data))
     } catch (error) {
       console.log(error)
     }
