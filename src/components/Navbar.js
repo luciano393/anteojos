@@ -12,7 +12,7 @@ const Navbar = () => {
     const [isOpen, setOpen] = useState(false);
     const [isToggle, setIsToggle] = useState(false);
     const [openCar, setOpenCar] = useState(false);
-    const user = useSelector((state) => state.auth.value)
+    const auth = useSelector((state) => state.auth.value)
     const dispatch = useDispatch();
     const history = useNavigate();
 
@@ -36,6 +36,14 @@ const Navbar = () => {
         }
         refreshPage()
     }
+
+    useEffect(() => {
+        const isAuthenticated = () => {
+            dispatch(getUserAction())
+        }
+
+        isAuthenticated()
+    },[])
 
     useEffect(() => {
         const changeWidth = () => {
@@ -63,13 +71,13 @@ const Navbar = () => {
                 <div className='cart' onClick={toggleCar}>
                     <IoCart/>
                 </div>
-                {(!user && screenWidth > 800) && (
+                {(!auth && screenWidth > 800) && (
                 <div className='autentication-700'>
                     <Link to={'/register'} className='autentication-700__item br'>Crear cuenta</Link>
                     <Link to={'/login'} className='autentication-700__item'>Iniciar sesión</Link>
                 </div>  
                 )}
-                {(user && screenWidth > 800) && (
+                {(auth && screenWidth > 800) && (
                     <IoPeople cursor={"pointer"} className='user' onClick={toggleUser}/>
                 )} 
                 {(isToggle) && (
@@ -86,7 +94,7 @@ const Navbar = () => {
                         <Link to={`/politica`} className='sidebar__item' onClick={toggleNav}>POLITICAS</Link>
                         <Link to={`/contacto`} className='sidebar__item' onClick={toggleNav}>CONTACTO</Link>
                     </div>
-                    {!user 
+                    {!auth 
                     ? 
                     <div className='sidebar__autentication'>
                         <IoPeople />

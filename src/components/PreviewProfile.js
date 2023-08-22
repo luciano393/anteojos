@@ -4,7 +4,7 @@ import { removeUserAction } from '../reducers/AuthReducer';
 import { Link, useNavigate } from 'react-router-dom';
 
 const PreviewProfile = () => {
-    const user = useSelector((state) => state.auth.value)
+    const user = useSelector((state) => state.user.value)
     const dispatch = useDispatch();
     const history = useNavigate();
 
@@ -18,8 +18,6 @@ const PreviewProfile = () => {
 
     return (
         <div className='preview-profile'>
-            <h3>{user.name}</h3>
-            <p>{user.email}</p>
             <Link to={'/backoffice'} className='btn'>Back office</Link>
             <button className='btn' onClick={Logout}>Cerrar Sesión</button>
         </div>

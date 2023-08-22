@@ -4,7 +4,8 @@ import { Formik } from 'formik';
 import { Link, useNavigate } from 'react-router-dom';
 import apiServer from '../services/server';
 import { useDispatch } from 'react-redux';
-import { login } from '../reducers/AuthReducer';
+import { getUserAction } from '../reducers/AuthReducer';
+import { Alert } from '../components/Alert';
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -37,14 +38,14 @@ const Register = () => {
       phone: values.phone,
       password: values.password
     }
-    await apiServer.post("http://localhost:9000/users/register", dataUser)
-      .then((res) => {
-        const { message, data } = res
-        const { token } = data
+    await apiServer.post("/users/register", dataUser)
+      .then( (res) => {
+        const {message, data} = res.data
+
         if(message === "User created successfully!") {
-          window.alert("Te haz registrado correctamente")
-          localStorage.setItem("token", token)
-          dispatch(login())
+          Alert("Exito!","Te haz registrado correctamente!","success")
+          localStorage.setItem("token", data)
+          dispatch(getUserAction())
           setTimeout(() => {
             history('/')
           }, 3000)
@@ -53,7 +54,7 @@ const Register = () => {
         }
       })
       .catch((e) => {
-      console.log(e)
+      console.log(`Ocurrio un error: ${e}`)
       })
   }
 

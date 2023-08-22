@@ -1,19 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
 import getToken from '../helpers/UseGetToken';
 import apiServer from '../services/server';
+import { userCurrent } from './UserReducer';
 
-const initialStateValue = false;
+const initialState = false
 
 export const authSlice = createSlice({
     name: 'auth',
-    initialState: { initialStateValue },
+    initialState: { value: initialState},
     reducers: {
         login: (state, action) => {
             state.value = action.payload;
         },
 
         logout: (state) => {
-            state.value = initialStateValue;
+            state.value = initialState;
         },
     }
 })
@@ -21,15 +22,21 @@ export const authSlice = createSlice({
 export const {login, logout} = authSlice.actions;
 
 export const getUserAction = () => async dispatch => {
-    try {
-      const res = await apiServer.get("http://localhost:9000/me", {
-        headers: {
-          Authorization: getToken()
-        }
-      })
-      dispatch(login(res.data.data))
-    } catch (error) {
-      console.log(error)
+    const token = localStorage.getItem("token")
+    if(!token) return
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      }
+    }
+    const res = await apiServer.get("http://localhost:9000/users/current", config)
+    if(res) {
+      dispatch(userCurrent(res.data))
+      dispatch(login(true))
+    } else {
+      console.log("pero la puta madre")
     }
 }
 

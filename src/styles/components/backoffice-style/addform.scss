@@ -1,0 +1,28 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    h2 {
+        font-weight: 400;
+        margin: 1rem;
+    }
+    .form {
+        padding: 1rem;
+        border: 1px solid #666;
+        display: flex;
+        flex-direction: column;
+        .img {
+            height: 200px;
+            width: 200px;
+        }
+        .input {
+            border: 1px solid #666;
+            padding: .5rem;
+            margin: 1rem 0;
+        }
+        .select {
+            border: 1px solid #666;
+            padding: .5rem;
+            margin: 1rem 0;
+        }
+    }
+}

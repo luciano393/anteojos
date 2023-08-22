@@ -1,18 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Formik } from 'formik';
 import { Link, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import apiServer from '../services/server';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getUserAction } from '../reducers/AuthReducer';
 import { Alert } from '../components/Alert';
-import Logotype from '../components/Logotype';
 
 const Login = () => {
     const dispatch = useDispatch();
     const history = useNavigate();
-    const isAuthenticated = useSelector((state) => state.value)
-    console.log(isAuthenticated);
 
     const validationSchema = Yup.object({
       email: Yup.string().email("Formato del email invalido").required("Required"),
@@ -29,7 +26,7 @@ const Login = () => {
         email: values.email,
         password: values.password
       }
-      await apiServer.post("http://localhost:9000/users/authenticate/", dataUser)
+      await apiServer.post("/users/authenticate", dataUser)
               .then(async (res) => {
                 const { data, message } = res.data
                 const { token } = data

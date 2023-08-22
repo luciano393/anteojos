@@ -1,19 +1,15 @@
+import { IKImage } from 'imagekitio-react';
 import React from 'react';
 import { FaTruck }  from 'react-icons/fa';
 
 const Item = (props) => {
   return (
     <div className='item-wrapper'>
-        <img 
-        src={props.url}
-        alt=''
+        <IKImage path={props.url}
         />
-        <p className='shipment mb'><FaTruck /><span>ENVÍO GRATIS</span></p>
-        <p className='price mb fw600'>$20.000</p>
-        <div className='dues'>
-            <p className='mb'>6 cuotas sin interes</p>
-            <p className='fw600'>$3.466,67</p>
-        </div>
+        <p className='shipment'><FaTruck /> Envios a todo el pais</p>
+        <p className='description'>Modelo</p>
+        <p className='price'>$20.000</p>
     </div>
   )
 }

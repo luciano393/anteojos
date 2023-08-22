@@ -1,39 +1,68 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Item from './Item';
-import { Link } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
+import apiServer from '../services/server';
+import { useDispatch, useSelector } from 'react-redux';
+import { loadProducts } from '../reducers/ProductReducer';
 
 
 const ProductsMain = () => {
-    const url = "https://ik.imagekit.io/0lswtnkkmck/Anteojos%20de%20Sol/%20%20%20"
-    const products = [
-        "(9)_AfLMcPrMl.jpeg?updatedAt=1691939398394",
-        "(7)_WrqQnjl3D.jpeg?updatedAt=1691939398323",
-        "(8)_TgpFfwNTS.jpeg?updatedAt=1691939398322",
-        "(5)_2hz7dxwBIG.jpeg?updatedAt=1691939391551",
-        "(4)_1YNLG_34H.jpeg?updatedAt=1691939391489",
-        "(6)_INZQQR9oxX.jpeg?updatedAt=1691939391459",
-        "(33)_7ACnqe_XR.jpeg?updatedAt=1691939391436",
-        "(33)_7ACnqe_XR.jpeg?updatedAt=1691939391436",
-        "(30)_oeRkmvscW.jpeg?updatedAt=1691939391349"
-    ]
+    const [isOpen, setIsOpen] = useState(false);
+    const dispatch = useDispatch()
+    const products = useSelector((state) => state.product.products)
+    const toggleItem = () => {
+        setIsOpen(!isOpen)
+    }
+
+    useEffect(() => {
+        const exec = async () => {
+            await apiServer
+                .get("http://localhost:9000/product")
+                .then((res) => {
+                    if(res.status === 200) {
+                        dispatch(loadProducts(res.data));
+                    } else {
+                        console.log("No hay productos para mostrar");
+                    }
+                })
+                .catch((e) => {
+                    console.log(e)
+                    console.log("Error de servidor");
+                })
+        }
+        exec()
+    }, [])
 
     return (
-        <div className='productsmain-wrapper'>
+        <section className='product-wrapper'>
             <div className='products'>
-                <Item url={url.concat(products[0])}/>
-                <Item url={url.concat(products[2])}/>
-                <Item url={url.concat(products[1])}/>
-                <Item url={url.concat(products[3])}/>
-                <Item url={url.concat(products[4])}/>
-                <Item url={url.concat(products[5])}/>
-                <Item url={url.concat(products[6])}/>
-                <Item url={url.concat(products[7])}/>
-                <Item url={url.concat(products[8])}/>
+                    {products && 
+                        products.map((product) => 
+                        product ? (
+                            <div onClick={toggleItem}>
+                                <Item url={product.image}/>
+                            </div>
+                            ): null
+                        )    
+                    }
             </div>
-            <Link className='btn' to={'/anteojosdesol'}>
-                VER TODOS LOS PRODUCTOS
-            </Link>
-        </div>
+            <div className={`selection ${isOpen ? 'open-item' : 'close item'}`}>
+                    <div className='close' onClick={toggleItem}>
+                        x
+                    </div>
+                    <div className='info'>
+                        <div className='content-img'>
+                            <h1>imagen</h1>
+                        </div>
+                        <div className='content-text'>
+                            <h2>Modelo</h2>
+                            <p>Description</p>
+                            <span>Precio</span>
+                            <button>Agregar al carrito</button>
+                        </div>
+                    </div>
+                </div>
+        </section>
     )
 }
 
