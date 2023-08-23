@@ -33,8 +33,8 @@ export const productSlice = createSlice({
                 state.selected = state.products.filter(
             (product) => product.id === action.payload)[0];
         },
-        editSelected: (state, action) => {
-            state.selected = action.payload
+        unSelected: (state) => {
+            state.selected = initialState.selected
         },
         addProduct: (state,action) => {
             state.products.unshift(action.payload)
@@ -48,7 +48,7 @@ export const {
     editProducts,
     selectProduct,
     addProduct,
-    editSelected
+    unSelected
 } = productSlice.actions;
 
 export default productSlice.reducer;

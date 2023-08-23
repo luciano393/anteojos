@@ -1,17 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import Item from './Item';
-import { useSearchParams } from 'react-router-dom';
 import apiServer from '../services/server';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadProducts } from '../reducers/ProductReducer';
+import { loadProducts, selectProduct, unSelected } from '../reducers/ProductReducer';
+import { IKImage } from 'imagekitio-react';
 
 
 const ProductsMain = () => {
     const [isOpen, setIsOpen] = useState(false);
     const dispatch = useDispatch()
     const products = useSelector((state) => state.product.products)
-    const toggleItem = () => {
-        setIsOpen(!isOpen)
+    const product = useSelector((state) => state.product.selected)
+
+    const toggleItem = (id) => {
+        if(!isOpen) {
+            dispatch(selectProduct(id))
+            setIsOpen(!isOpen)
+        } else {
+            dispatch(unSelected())
+            setIsOpen(!isOpen)
+        }  
     }
 
     useEffect(() => {
@@ -39,7 +47,7 @@ const ProductsMain = () => {
                     {products && 
                         products.map((product) => 
                         product ? (
-                            <div onClick={toggleItem}>
+                            <div onClick={() => toggleItem(product.id)}>
                                 <Item url={product.image}/>
                             </div>
                             ): null
@@ -50,17 +58,20 @@ const ProductsMain = () => {
                     <div className='close' onClick={toggleItem}>
                         x
                     </div>
-                    <div className='info'>
-                        <div className='content-img'>
-                            <h1>imagen</h1>
+                    {product.id ? (
+                        <div className='info'>
+                            <div className='content-img'>
+                                <IKImage path={product.image} alt=' ' className='img'/>
+                            </div>
+                            <div className='content-text'>
+                                <h2>{product.model}</h2>
+                                <p>{product.category}</p>
+                                <span>{product.price.$numberDecimal}</span>
+                                <button>Agregar al carrito</button>
+                            </div>
                         </div>
-                        <div className='content-text'>
-                            <h2>Modelo</h2>
-                            <p>Description</p>
-                            <span>Precio</span>
-                            <button>Agregar al carrito</button>
-                        </div>
-                    </div>
+                    ) : null  
+                    }
                 </div>
         </section>
     )

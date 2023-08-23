@@ -1,21 +1,35 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import apiServer from '../services/server';
 import { IKImage } from 'imagekitio-react';
 import { Link } from 'react-router-dom';
 import AddProduct from '../components/backoffice-components/AddProduct';
+import { useDispatch } from 'react-redux';
+import { getUserAction } from '../reducers/AuthReducer'
+import getToken from '../helpers/UseGetToken';
 
 const BackOffice = () => {
     const [ listProducts, setListProducts ] = useState([]);
     const [ listUsers, setListUsers ] = useState([]);
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        const isAuthenticated = () => {
+            dispatch(getUserAction())
+        }
+
+        isAuthenticated()
+    },[])
+
 
     const handleProducts = async () => {
-        const products = await apiServer.get('http://localhost:9000/product')
+        
+        const products = await apiServer.get('/product', getToken())
         setListProducts(products.data)
         setListUsers([])
     }
 
     const handleUsers = async () => {
-        const users = await apiServer.get('http://localhost:9000/users')
+        const users = await apiServer.get('/users', getToken())
         setListUsers(users.data)
         setListProducts([])
     }

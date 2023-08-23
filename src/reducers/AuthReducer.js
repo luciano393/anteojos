@@ -22,16 +22,11 @@ export const authSlice = createSlice({
 export const {login, logout} = authSlice.actions;
 
 export const getUserAction = () => async dispatch => {
-    const token = localStorage.getItem("token")
-    if(!token) return
-
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`
-      }
+    const token = getToken()
+    if(!token) {
+      return 
     }
-    const res = await apiServer.get("http://localhost:9000/users/current", config)
+    const res = await apiServer.get("http://localhost:9000/users/current", getToken())
     if(res) {
       dispatch(userCurrent(res.data))
       dispatch(login(true))

@@ -1,8 +1,10 @@
 import { Field, Formik } from 'formik'
 import React, {  useState } from 'react'
+import apiServer from '../../services/server'
 
 
 const AddProduct = () => {
+    const [ url, setUrl ] = useState()
     const [ image, setImage ] = useState()
 
     const initialValues = {
@@ -13,13 +15,15 @@ const AddProduct = () => {
     }
 
     const onChange = (o) => {
-        setImage(URL.createObjectURL(o.target.files[0]));
+        setUrl(URL.createObjectURL(o.target.files[0]));
+        setImage(o.target.files[0])
     }
 
     const handleSubmit = async (values) => {
-        
+        values.image = image
         try {
-            console.log()
+            const res = await apiServer.post('/product/create', values)
+            console.log(res)
         } catch(e) {
             console.log(e)
         }
@@ -43,7 +47,7 @@ const AddProduct = () => {
                         type="file" name="product[image]"
                         onChange={onChange}
                     />
-                    {(image) ? <img src={image} alt='' className='img'/> : <></>}
+                    {(url) ? <img src={url} alt='' className='img'/> : <></>}
                     <Field type="text" name="model" placeholder="Ingrese el modelo" className="input" value={values.model}/>
                     <Field as="select" name="category" className="select" value={values.category}>
                         <option value="category-1">Anteojos de sol</option>
