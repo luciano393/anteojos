@@ -1,0 +1,50 @@
+.contact-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5rem 2rem;
+    form {
+        margin: 2rem 0;
+        h3 {
+            font-size: 1.5rem;
+            color: #444;
+        }
+        .box-input {
+            margin: 2rem 0;
+            input {
+                font-size: 1rem;
+                border: 1px solid rgba(0, 0, 0, .1);
+                padding: .5rem;
+            }
+            textarea {
+                font-size: 1rem;
+                border: 1px solid rgba(0, 0, 0, .1);
+                padding: .5rem;
+                display: flex;
+                resize: none;
+                max-width: 20rem;
+            }
+        }
+        .btn-form {
+            margin: 1rem 0;
+            padding: 0.6rem;
+            background-color: #222;
+            color: #fff;
+            cursor: pointer;
+            &:hover {
+                background-color: #444;
+            }
+        }
+    }
+    @media(min-width: 780px) {
+        margin: 10rem 7rem;
+        align-items: flex-start;
+        .form {
+            .box-input {
+                textarea {
+                    max-width: 50rem;
+                }
+            }
+        }
+    }
+}

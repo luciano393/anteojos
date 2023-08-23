@@ -44,7 +44,10 @@ const AddProduct = () => {
             <h2>Add new product</h2>
             <Formik
                 initialValues={initialValues}
-                onSubmit={handleSubmit}
+                onSubmit={async (values, { resetForm }) => {
+                    await handleSubmit(values)
+                    resetForm()
+                  }}
             >
             {({
                 values,
