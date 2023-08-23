@@ -5,8 +5,9 @@ import { IKImage } from 'imagekitio-react';
 import { getProducts } from '../reducers/ProductReducer';
 import { selectProduct, unSelected } from '../reducers/ProductReducer';
 
-const AnteojosSol = () => {
+const Category = (props) => {
   const [isOpen, setIsOpen] = useState(false);
+  const category = ["Anteojos de sol", "Anteojos recetados", "Lentes de contacto", "kids"]
   const dispatch = useDispatch()
   const products = useSelector((state) => state.product.products)
   const product = useSelector((state) => state.product.selected)
@@ -32,14 +33,17 @@ const AnteojosSol = () => {
       <div className='page-wrapper'>
           <section className='product-wrapper'>
             <div className='products'>
-                    {products && 
-                        products.map((product) => 
-                        product.category === "category-1" ? (
-                            <div onClick={() => toggleItem(product.id)}>
-                                <Item model={product.model} url={product.image} price={product.price.$numberDecimal}/>
-                            </div>
-                            ): null
-                        )    
+                    {products.find(element => element.category === props.category) ? 
+                    products.map((product) => 
+                    product.category === props.category ? (
+                        <div onClick={() => toggleItem(product.id)}>
+                            <Item model={product.model} url={product.image} price={product.price.$numberDecimal}/>
+                        </div>
+                        ): null
+                    ) :
+                    <div className='ups'>
+                        <h4>No se han encontrado productos en esta categoria...</h4>
+                    </div>      
                     }
             </div>
             <div className={`selection ${isOpen ? 'open-item' : 'close item'}`}>
@@ -53,7 +57,12 @@ const AnteojosSol = () => {
                             </div>
                             <div className='content-text'>
                                 <h2>{product.model}</h2>
-                                <p>Anteojos de sol</p>
+                                <p>{props.category === "category-1" ? category[0] : 
+                                    props.category === "category-2" ? category[1] :
+                                    props.category === "category-3" ? category[2] :
+                                    props.category === "category-4" ? category[3] :
+                                    null
+                                    }</p>
                                 <span>{product.price.$numberDecimal}</span>
                                 <button>Agregar al carrito</button>
                             </div>
@@ -66,4 +75,4 @@ const AnteojosSol = () => {
     )
 }
 
-export default AnteojosSol
+export default Category

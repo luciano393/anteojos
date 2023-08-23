@@ -7,10 +7,10 @@ const Footer = () => {
       <div className='nav'>
         <h3 className='footer__title'>NAVEGACIÓN</h3>
         <Link to={`/`} className='nav__items'>INICIO</Link>
-        <Link to={`/anteojosdesol`} className='nav__items'>ANTEOJOS DE SOL</Link>
-        <Link to={`/anteojosrecetados`} className='nav__items'>ANTEOJOS RECETADOS</Link>
-        <Link to={`/lentesdecontacto`} className='nav__items'>LENTES DE CONTACTO</Link>
-        <Link to={`/kids`} className='nav__items'>NIÑOS</Link>
+        <Link to={`/category-1`} className='nav__items'>ANTEOJOS DE SOL</Link>
+        <Link to={`/category-2`} className='nav__items'>ANTEOJOS RECETADOS</Link>
+        <Link to={`/category-3`} className='nav__items'>LENTES DE CONTACTO</Link>
+        <Link to={`/category-4`} className='nav__items'>NIÑOS</Link>
         <Link to={`/politica`} className='nav__items'>POLITICAS</Link>
         <Link to={`/contacto`} className='nav__items'>CONTACTO</Link>
       </div>

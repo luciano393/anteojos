@@ -2,10 +2,7 @@ import React from 'react';
 import {createBrowserRouter} from 'react-router-dom';
 import ErrorPage from '../pages/ErrorPage';
 import Main from '../pages/Main';
-import AnteojosSol from '../pages/AnteojosSol';
-import AnteojosRecetados from '../pages/AnteojosRecetados';
-import LentesContacto from '../pages/LentesContacto';
-import Kids from '../pages/Kids';
+import Category from '../pages/Category';
 import Politica from '../pages/Politica';
 import Contacto from '../pages/Contacto';
 import Login from '../autentication/Login';
@@ -26,23 +23,23 @@ export const router = createBrowserRouter([
         errorElement: <ErrorPage />
       },
       {
-        path: "/anteojosdesol",
-        element: <AnteojosSol />,
+        path: "/category-1",
+        element: <Category category="category-1"/>,
         errorElement: <ErrorPage />
       },
       {
-        path: "/anteojosrecetados",
-        element: <AnteojosRecetados />,
+        path: "/category-2",
+        element: <Category category="category-2"/>,
         errorElement: <ErrorPage />
       },
       {
-        path: "/lentesdecontacto",
-        element: <LentesContacto />,
+        path: "/category-3",
+        element: <Category category="category-3"/>,
         errorElement: <ErrorPage />
       },
       {
-        path: "/kids",
-        element: <Kids />,
+        path: "/category-4",
+        element: <Category category="category-4"/>,
         errorElement: <ErrorPage />
       },
       {

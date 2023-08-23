@@ -59,7 +59,7 @@ const AddProduct = () => {
                     {(url) ? <img src={url} alt='' className='img'/> : <></>}
                     <Field type="text" name="model" placeholder="Ingrese el modelo" className="input" value={values.model}/>
                     <Field as="select" name="category" className="select" value={values.category}>
-                        <option value="category-1" selected >Anteojos de sol</option>
+                        <option value="category-1" selected="true" >Anteojos de sol</option>
                         <option value="category-2">Anteojos recetados</option>
                         <option value="category-3">Lentes de contacto</option>
                         <option value="category-4">Niños</option>

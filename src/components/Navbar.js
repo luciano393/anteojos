@@ -87,10 +87,10 @@ const Navbar = () => {
                 <div className={`sidebar ${isOpen || screenWidth > 780 ? 'show' : 'close'}`}>
                     <div className='sidebar__nav'>
                         <Link to={`/`} className='sidebar__item' onClick={toggleNav}>INICIO</Link>
-                        <Link to={`/anteojosdesol`} className='sidebar__item' onClick={toggleNav}>ANTEOJOS DE SOL</Link>
-                        <Link to={`/anteojosrecetados`} className='sidebar__item' onClick={toggleNav}>ANTEOJOS RECETADOS</Link>
-                        <Link to={`/lentesdecontacto`} className='sidebar__item' onClick={toggleNav}>LENTES DE CONTACTO</Link>
-                        <Link to={`/kids`} className='sidebar__item' onClick={toggleNav}>NIÑOS</Link>
+                        <Link to={`/category-1`} className='sidebar__item' onClick={toggleNav}>ANTEOJOS DE SOL</Link>
+                        <Link to={`/category-2`} className='sidebar__item' onClick={toggleNav}>ANTEOJOS RECETADOS</Link>
+                        <Link to={`/category-3`} className='sidebar__item' onClick={toggleNav}>LENTES DE CONTACTO</Link>
+                        <Link to={`/category-4`} className='sidebar__item' onClick={toggleNav}>NIÑOS</Link>
                         <Link to={`/politica`} className='sidebar__item' onClick={toggleNav}>POLITICAS</Link>
                         <Link to={`/contacto`} className='sidebar__item' onClick={toggleNav}>CONTACTO</Link>
                     </div>
