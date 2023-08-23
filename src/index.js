@@ -6,20 +6,17 @@ import { RouterProvider } from "react-router-dom";
 import { router } from './routes/root';
 import store from './store';
 import { IKContext } from 'imagekitio-react';
-
-const publicKey="public_lGafPttRIS/xR8KMgg+uSkT1IGw="
-const urlEndpoint="https://ik.imagekit.io/0lswtnkkmck/"
-const authenticateEndpoint="http://localhost:9000/authik/"
-
+import config from './config.json'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
       <IKContext
-          publicKey={publicKey}
-          urlEndpoint={urlEndpoint}
+          publicKey={config.publicKey}
+          urlEndpoint={config.urlEndpoint}
           transformationPosition="path"
-          authenticationEndpoint={authenticateEndpoint}
+          authenticationEndpoint={config.authenticateEndpoint}
+          privateKey={config.privateKey}
       >
         <RouterProvider router={router}/>
       </IKContext>

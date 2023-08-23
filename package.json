@@ -11,6 +11,7 @@
     "formik": "^2.4.3",
     "hamburger-react": "^2.5.0",
     "imagekitio-react": "^2.0.0",
+    "js-base64": "^3.7.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Item from './Item';
 import apiServer from '../services/server';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadProducts, selectProduct, unSelected } from '../reducers/ProductReducer';
+import { getProducts, loadProducts, selectProduct, unSelected } from '../reducers/ProductReducer';
 import { IKImage } from 'imagekitio-react';
 
 
@@ -24,19 +24,7 @@ const ProductsMain = () => {
 
     useEffect(() => {
         const exec = async () => {
-            await apiServer
-                .get("http://localhost:9000/product")
-                .then((res) => {
-                    if(res.status === 200) {
-                        dispatch(loadProducts(res.data));
-                    } else {
-                        console.log("No hay productos para mostrar");
-                    }
-                })
-                .catch((e) => {
-                    console.log(e)
-                    console.log("Error de servidor");
-                })
+            dispatch(getProducts())
         }
         exec()
     }, [])
@@ -48,7 +36,7 @@ const ProductsMain = () => {
                         products.map((product) => 
                         product ? (
                             <div onClick={() => toggleItem(product.id)}>
-                                <Item url={product.image}/>
+                                <Item  model={product.model} url={product.image} price={product.price.$numberDecimal}/>
                             </div>
                             ): null
                         )    

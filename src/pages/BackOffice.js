@@ -6,6 +6,7 @@ import AddProduct from '../components/backoffice-components/AddProduct';
 import { useDispatch } from 'react-redux';
 import { getUserAction } from '../reducers/AuthReducer'
 import getToken from '../helpers/UseGetToken';
+import { Alert } from '../components/Alert';
 
 const BackOffice = () => {
     const [ listProducts, setListProducts ] = useState([]);
@@ -18,7 +19,7 @@ const BackOffice = () => {
         }
 
         isAuthenticated()
-    },[])
+    },[dispatch])
 
 
     const handleProducts = async () => {
@@ -33,6 +34,16 @@ const BackOffice = () => {
         setListUsers(users.data)
         setListProducts([])
     }
+
+    const deleteProduct = async (id) => {
+        await apiServer.delete(`/product/${id}`, getToken())
+            .then( response => {
+                dispatch(deleteProduct(response))
+                Alert('Exito!', "El producto ha sido eliminado correctamente!", "success")
+            })
+            .catch( error => console.log("La puta mandre: " + error))
+    }
+
 
     return (
         <div className='backoffice'>
@@ -64,7 +75,7 @@ const BackOffice = () => {
                                         </p>
                                         <div className='btns'>
                                             <button className='btn'>Edit</button>
-                                            <button className='btn'>Delete</button>
+                                            <button className='btn' onClick={() => deleteProduct(product.id)}>Delete</button>
                                         </div>
                                     </div>
                                 </div>

@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import apiServer from '../services/server';
 
 const initialState = {
     products: [],
@@ -50,5 +51,21 @@ export const {
     addProduct,
     unSelected
 } = productSlice.actions;
+
+export const getProducts = () => async dispatch => {
+    await apiServer
+        .get("http://localhost:9000/product")
+        .then((res) => {
+            if(res.status === 200) {
+                dispatch(loadProducts(res.data));
+            } else {
+                console.log("No hay productos para mostrar");
+            }
+        })
+        .catch((e) => {
+            console.log(e)
+            console.log("Error de servidor");
+        })
+}
 
 export default productSlice.reducer;

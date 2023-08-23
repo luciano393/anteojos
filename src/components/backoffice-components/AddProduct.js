@@ -1,11 +1,18 @@
 import { Field, Formik } from 'formik'
-import React, {  useState } from 'react'
+import React, {  useEffect, useState } from 'react'
 import apiServer from '../../services/server'
+import getToken from '../../helpers/UseGetToken'
+import { Alert } from '../Alert'
+import { useDispatch } from 'react-redux'
+import { loadProducts } from '../../reducers/ProductReducer'
+import getBase64 from '../../helpers/UseGetBase64'
+
 
 
 const AddProduct = () => {
     const [ url, setUrl ] = useState()
     const [ image, setImage ] = useState()
+    const dispatch = useDispatch()
 
     const initialValues = {
         model: "",
@@ -14,19 +21,21 @@ const AddProduct = () => {
         image: []
     }
 
-    const onChange = (o) => {
+    const onChange = async (o) => {
         setUrl(URL.createObjectURL(o.target.files[0]));
-        setImage(o.target.files[0])
+        await getBase64(o.target.files[0])
+            .then(resolve => setImage(resolve))
+            .catch(error => console.log(error))
     }
 
     const handleSubmit = async (values) => {
         values.image = image
-        try {
-            const res = await apiServer.post('/product/create', values)
-            console.log(res)
-        } catch(e) {
-            console.log(e)
-        }
+        await apiServer.post('/product/create', values, getToken())
+            .then(res => {
+                Alert("Exito!", "El producto se ha cargado correctamente!", "success")
+                dispatch(loadProducts())
+            })    
+            .catch(e => console.log(e))
     }
 
     
@@ -50,7 +59,7 @@ const AddProduct = () => {
                     {(url) ? <img src={url} alt='' className='img'/> : <></>}
                     <Field type="text" name="model" placeholder="Ingrese el modelo" className="input" value={values.model}/>
                     <Field as="select" name="category" className="select" value={values.category}>
-                        <option value="category-1">Anteojos de sol</option>
+                        <option value="category-1" selected >Anteojos de sol</option>
                         <option value="category-2">Anteojos recetados</option>
                         <option value="category-3">Lentes de contacto</option>
                         <option value="category-4">Niños</option>

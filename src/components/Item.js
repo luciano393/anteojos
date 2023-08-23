@@ -8,8 +8,8 @@ const Item = (props) => {
         <IKImage path={props.url}
         />
         <p className='shipment'><FaTruck /> Envios a todo el pais</p>
-        <p className='description'>Modelo</p>
-        <p className='price'>$20.000</p>
+        <p className='description'>{props.model}</p>
+        <p className='price'>${props.price}</p>
     </div>
   )
 }
