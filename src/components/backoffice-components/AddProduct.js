@@ -1,5 +1,5 @@
 import { Field, Formik } from 'formik'
-import React, {  useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import apiServer from '../../services/server'
 import getToken from '../../helpers/UseGetToken'
 import { Alert } from '../Alert'
